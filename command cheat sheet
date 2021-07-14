@@ -1,0 +1,677 @@
+1 – SYSTEM INFORMATION
+# Display Linux system information
+uname -a
+
+# Display kernel release information
+uname -r
+
+# Show which version of Red Hat installed
+cat /etc/redhat-release
+
+# Show how long the system has been running + load
+uptime
+
+# Show system host name
+hostname
+
+# Display all local IP addresses of the host.
+hostname -I
+
+# Show system reboot history
+last reboot
+
+# Show the current date and time
+date
+
+# Show this month's calendar
+cal
+
+# Display who is online
+w
+
+# Who you are logged in as
+whoami
+
+2 – HARDWARE INFORMATION
+# Display messages in kernel ring buffer
+dmesg
+
+# Display CPU information
+cat /proc/cpuinfo
+
+# Display memory information
+cat /proc/meminfo
+
+# Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
+free -h
+
+# Display PCI devices
+lspci -tv
+
+# Display USB devices
+lsusb -tv
+
+# Display DMI/SMBIOS (hardware info) from the BIOS
+dmidecode
+
+# Show info about disk sda
+hdparm -i /dev/sda
+
+# Perform a read speed test on disk sda
+hdparm -tT /dev/sda
+
+# Test for unreadable blocks on disk sda
+badblocks -s /dev/sda
+3 – PERFORMANCE MONITORING AND STATISTICS
+# Display and manage the top processes
+top
+
+# Interactive process viewer (top alternative)
+htop
+
+# Display processor related statistics
+mpstat 1
+
+# Display virtual memory statistics
+vmstat 1
+
+# Display I/O statistics
+iostat 1
+
+# Display the last 100 syslog messages  (Use /var/log/syslog for Debian based systems.)
+tail -100 /var/log/messages
+
+# Capture and display all packets on interface eth0
+tcpdump -i eth0
+
+# Monitor all traffic on port 80 ( HTTP )
+tcpdump -i eth0 'port 80'
+
+# List all open files on the system
+lsof
+
+# List files opened by user
+lsof -u user
+
+# Display free and used memory ( -h for human readable, -m for MB, -g for GB.)
+free -h
+
+# Execute "df -h", showing periodic updates
+watch df -h
+4 – USER INFORMATION AND MANAGEMENT
+# Display the user and group ids of your current user.
+id
+
+# Display the last users who have logged onto the system.
+last
+
+# Show who is logged into the system.
+who
+
+# Show who is logged in and what they are doing.
+w
+
+# Create a group named "test".
+groupadd test
+
+# Create an account named john, with a comment of "John Smith" and create the user's home directory.
+useradd -c "John Smith" -m john
+
+# Delete the john account.
+userdel john
+
+# Add the john account to the sales group
+usermod -aG sales john
+5 – FILE AND DIRECTORY COMMANDS
+# List all files in a long listing (detailed) format
+ls -al
+
+# Display the present working directory
+pwd
+
+# Create a directory
+mkdir directory
+
+# Remove (delete) file
+rm file
+
+# Remove the directory and its contents recursively
+rm -r directory
+
+# Force removal of file without prompting for confirmation
+rm -f file
+
+# Forcefully remove directory recursively
+rm -rf directory
+
+# Copy file1 to file2
+cp file1 file2
+
+# Copy source_directory recursively to destination. If destination exists, copy source_directory into destination, otherwise create destination with the contents of source_directory.
+cp -r source_directory destination
+
+# Rename or move file1 to file2. If file2 is an existing directory, move file1 into directory file2
+mv file1 file2
+
+# Create symbolic link to linkname
+ln -s /path/to/file linkname
+
+# Create an empty file or update the access and modification times of file.
+touch file
+
+# View the contents of file
+cat file
+
+# Browse through a text file
+less file
+
+# Display the first 10 lines of file
+head file
+
+# Display the last 10 lines of file
+tail file
+
+# Display the last 10 lines of file and "follow" the file as it grows.
+tail -f file
+6 – PROCESS MANAGEMENT
+# Display your currently running processes
+ps
+
+# Display all the currently running processes on the system.
+ps -ef
+
+# Display process information for processname
+ps -ef | grep processname
+
+# Display and manage the top processes
+top
+
+# Interactive process viewer (top alternative)
+htop
+
+# Kill process with process ID of pid
+kill pid
+
+# Kill all processes named processname
+killall processname
+
+# Start program in the background
+program &
+
+# Display stopped or background jobs
+bg
+
+# Brings the most recent background job to foreground
+fg
+
+# Brings job n to the foreground
+fg n
+
+7 – FILE PERMISSIONS
+        PERMISSION      EXAMPLE
+
+         U   G   W
+        rwx rwx rwx     chmod 777 filename
+        rwx rwx r-x     chmod 775 filename
+        rwx r-x r-x     chmod 755 filename
+        rw- rw- r--     chmod 664 filename
+        rw- r-- r--     chmod 644 filename
+
+# NOTE: Use 777 sparingly!
+
+        LEGEND
+        U = User
+        G = Group
+        W = World
+
+        r = Read
+        w = write
+        x = execute
+        - = no access
+8 – NETWORKING
+# Display all network interfaces and IP address
+ip a
+
+# Display eth0 address and details
+ip addr show dev eth0
+
+# Query or control network driver and hardware settings
+ethtool eth0
+
+# Send ICMP echo request to host
+ping host
+
+# Display whois information for domain
+whois domain
+
+# Display DNS information for domain
+dig domain
+
+# Reverse lookup of IP_ADDRESS
+dig -x IP_ADDRESS
+
+# Display DNS IP address for domain
+host domain
+
+# Display the network address of the host name.
+hostname -i
+
+# Display all local IP addresses of the host.
+hostname -I
+
+# Download http://domain.com/file
+wget http://domain.com/file
+
+# Display listening tcp and udp ports and corresponding programs
+netstat -nutlp
+9 – ARCHIVES (TAR FILES)
+# Create tar named archive.tar containing directory.
+tar cf archive.tar directory
+
+# Extract the contents from archive.tar.
+tar xf archive.tar
+
+# Create a gzip compressed tar file name archive.tar.gz.
+tar czf archive.tar.gz directory
+
+# Extract a gzip compressed tar file.
+tar xzf archive.tar.gz
+
+# Create a tar file with bzip2 compression
+tar cjf archive.tar.bz2 directory
+
+# Extract a bzip2 compressed tar file.
+tar xjf archive.tar.bz2
+10 – INSTALLING PACKAGES
+# Search for a package by keyword.
+yum search keyword
+
+# Install package.
+yum install package
+
+# Display description and summary information about package.
+yum info package
+
+# Install package from local file named package.rpm
+rpm -i package.rpm
+
+# Remove/uninstall package.
+yum remove package
+
+# Install software from source code.
+tar zxvf sourcecode.tar.gz
+cd sourcecode
+./configure
+make
+make install
+11 – SEARCH
+# Search for pattern in file
+grep pattern file
+
+# Search recursively for pattern in directory
+grep -r pattern directory
+
+# Find files and directories by name
+locate name
+
+# Find files in /home/john that start with "prefix".
+find /home/john -name 'prefix*'
+
+# Find files larger than 100MB in /home
+find /home -size +100M
+12 – SSH LOGINS
+# Connect to host as your local username.
+ssh host
+
+# Connect to host as user
+ssh user@host
+
+# Connect to host using port
+ssh -p port user@host
+13 – FILE TRANSFERS
+# Secure copy file.txt to the /tmp folder on server
+scp file.txt server:/tmp
+
+# Copy *.html files from server to the local /tmp folder.
+scp server:/var/www/*.html /tmp
+
+# Copy all files and directories recursively from server to the current system's /tmp folder.
+scp -r server:/var/www /tmp
+
+# Synchronize /home to /backups/home
+rsync -a /home /backups/
+
+# Synchronize files/directories between the local and remote system with compression enabled
+rsync -avz /home server:/backups/
+14 – DISK USAGE
+# Show free and used space on mounted filesystems
+df -h
+
+# Show free and used inodes on mounted filesystems
+df -i
+
+# Display disks partitions sizes and types
+fdisk -l
+
+# Display disk usage for all files and directories in human readable format
+du -ah
+
+# Display total disk usage off the current directory
+du -sh
+15 – DIRECTORY NAVIGATION
+# To go up one level of the directory tree.  (Change into the parent directory.)
+cd ..
+
+# Go to the $HOME directory
+cd
+
+# Change to the /etc directory
+cd /etc
+
+#Hardware Information
+#Show bootup messages:
+dmesg
+
+#See CPU information:
+cat /proc/cpuinfo
+
+#Display free and used memory with:
+free -h
+
+#List hardware configuration information:
+lshw
+
+#See information about block devices:
+lsblk
+
+#Show PCI devices in a tree-like diagram:
+lspci -tv
+
+#Display USB devices in a tree-like diagram:
+lsusb -tv
+
+#Show hardware information from the BIOS:
+dmidecode
+
+#Display disk data information:
+hdparm -i /dev/disk
+
+#Conduct a read-speed test on device/disk:
+hdparm -tT /dev/[device]
+
+#Test for unreadable blocks on device/disk:
+badblocks -s /dev/[device]
+
+#Searching
+#Search for a specific pattern in a file with grep:
+
+grep [pattern] [file_name]
+
+#Recursively search for a pattern in a directory:
+grep -r [pattern] [directory_name]
+
+#Find all files and directories related to a particular name:
+locate [name]
+
+#List names that begin with a specified character [a] in a specified location [/folder/location] by using the find command:
+find [/folder/location] -name [a]
+
+#See files larger than a specified size [+100M] in a folder:
+find [/folder/location] -size [+100M]
+
+#File Commands
+#List files in the directory:
+ls
+
+#List all files (shows hidden files):
+ls -a
+
+#Show directory you are currently working in:
+pwd
+
+#Create a new directory:
+mkdir [directory]
+
+#Remove a file:
+rm [file_name] 
+
+#Remove a directory recursively:
+rm -r [directory_name]
+
+#Recursively remove a directory without requiring confirmation:
+rm -rf [directory_name]
+
+#Copy the contents of one file to another file:
+cp [file_name1] [file_name2]
+
+#Recursively copy the contents of one file to a second file:
+cp -r [directory_name1] [directory_name2]
+
+#Rename [file_name1] to [file_name2] with the command:
+mv [file_name1] [file_name2]
+
+#Create a symbolic link to a file:
+ln -s /path/to/[file_name] [link_name]
+
+#Create a new file:
+touch [file_name]
+
+#Show the contents of a file:
+more [file_name]
+
+#or use the cat command:
+cat [file_name]
+
+#Append file contents to another file:
+cat [file_name1] >> [file_name2]
+
+#Display the first 10 lines of a file with:
+head [file_name]
+
+#Show the last 10 lines of a file:
+tail [file_name]
+
+#Encrypt a file:
+gpg -c [file_name]
+
+#Decrypt a file:
+gpg [file_name.gpg]
+
+#Show the number of words, lines, and bytes in a file:
+wc
+
+#Directory Navigation
+#Move up one level in the directory tree structure:
+cd ..
+
+#Change directory to $HOME:
+cd
+
+#Change location to a specified directory:
+cd /chosen/directory
+
+#File Compression
+#Archive an existing file:
+tar cf [compressed_file.tar] [file_name]
+
+#Extract an archived file:
+tar xf [compressed_file.tar]
+
+#Create a gzip compressed tar file by running:
+tar czf [compressed_file.tar.gz]
+
+#Compress a file with the .gz extension:
+gzip [file_name]
+
+#File Transfer
+#Copy a file to a server directory securely:
+scp [file_name.txt] [server/tmp]
+
+#Synchronize the contents of a directory with a backup directory using the rsync command:
+rsync -a [/your/directory] [/backup/] 
+
+#Users
+#See details about the active users:
+id
+
+#Show last system logins:
+last
+
+#Add a new group by typing:
+groupadd [group_name]
+
+#Add a new user:
+adduser [user_name]
+
+#Add a user to a group:
+usermod -aG [group_name] [user_name]
+
+#Temporarily elevate user privileges to superuser or root using the sudo command:
+sudo [command_to_be_executed_as_superuser]
+
+#Delete a user:
+userdel [user_name] 
+
+#Modify user information with:
+usermod
+
+#Package Installation
+#List all installed packages with yum:
+yum list installed
+
+#Find a package by a related keyword:
+yum search [keyword]
+
+#Show package information and summary:
+yum info [package_name]
+
+#Install a package using the YUM package manager:
+yum install [package_name.rpm]
+
+#Install a package using the DNF package manager:
+dnf install [package_name.rpm]
+
+#Install a package using the APT package manager:
+apt-get install [package_name]
+
+#Install an .rpm package from a local file:
+rpm -i  [package_name.rpm]
+
+#Remove an .rpm package:
+rpm -e [package_name.rpm]
+
+#Install software from source code:
+tar zxvf [source_code.tar.gz]
+cd [source_code]
+./configure
+make
+make install
+
+#Process Related
+#See a snapshot of active processes:
+ps
+
+#Show processes in a tree-like diagram:
+pstree
+
+#Display a memory usage map of processes:
+pmap
+
+#See all running processes:
+top
+
+#Terminate a Linux process under a given ID:
+kill [process_id]
+
+#Terminate a process under a specific name:
+pkill [proc_name]
+
+#Terminate all processes labelled “proc”:
+killall [proc_name]
+
+#List and resume stopped jobs in the background:
+bg
+
+#Bring the most recently suspended job to the foreground:
+fg
+
+#Bring a particular job to the foreground:
+fg [job]
+
+#List files opened by running processes:
+lsof
+
+#Disk Usage
+#You can use the df and du commands to check disk space in Linux.
+#See free and used space on mounted systems:
+df -h
+
+#Show free inodes on mounted filesystems:
+df -i
+
+#Display disk partitions, sizes, and types with the command:
+fdisk -l
+
+#See disk usage for all files and directory:
+du -ah
+
+#Show disk usage of the directory you are currently in:
+du -sh
+
+#Display target mount point for all filesystem:
+findmnt
+
+#Mount a device:
+mount [device_path] [mount_point]
+
+#Network
+#List IP addresses and network interfaces:
+ip addr show
+
+#Assign an IP address to interface eth0:
+ip address add [IP_address]
+
+#Display IP addresses of all network interfaces with:
+ifconfig
+
+#See active (listening) ports with the netstat command:
+netstat -pnltu
+
+#Show tcp and udp ports and their programs:
+netstat -nutlp
+
+#Display more information about a domain:
+whois [domain]
+
+#Show DNS information about a domain using the dig command:
+dig [domain] 
+
+#Do a reverse lookup on domain:
+dig -x host
+
+#Do reverse lookup of an IP address:
+dig -x [ip_address]
+
+#Perform an IP lookup for a domain:
+host [domain]
+
+#Show the local IP address:
+hostname -I
+
+#Download a file from a domain using the wget command:
+wget [file_name]
+
+Linux Keyboard Shortcuts
+Kill process running in the terminal: Ctrl + C
+Stop current process: Ctrl + Z
+The process can be resumed in the foreground with fg or in the background with bg.
+
+Cut one word before the cursor and add it to clipboard: Ctrl + W
+Cut part of the line before the cursor and add it to clipboard: Ctrl + U
+Cut part of the line after the cursor and add it to clipboard: Ctrl + K
+Paste from clipboard: Ctrl + Y
+Recall last command that matches the provided characters: Ctrl + R
+Run the previously recalled command: Ctrl + O
+Exit command history without running a command: Ctrl + G
+Run the last command again: !!
+Log out of current session: exit
